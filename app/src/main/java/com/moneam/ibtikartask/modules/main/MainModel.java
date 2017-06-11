@@ -38,6 +38,14 @@ public class MainModel extends BaseModel implements MainContract.Model {
     }
 
     @Override
+    public Observable<List<User>> fetchFollowers() {
+        return getIMainRepository()
+                .fetchNextPageFollowers(nextCursor)
+                .doOnNext(followersResponse -> nextCursor = followersResponse.getNextCursorStr())
+                .flatMap(followersResponse -> Observable.just(followersResponse.getUsers()));
+    }
+
+    @Override
     public void clearCachedData() {
         try {
             getIMainRepository().clearFollowersData();

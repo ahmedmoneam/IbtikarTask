@@ -42,7 +42,7 @@ public class FollowerFetcher implements Fetcher<BufferedSource, BarCode> {
                                            Response<ResponseBody> response) {
                         if (!response.isSuccessful()) {
                             try {
-                                e.onError(new Exception(response.errorBody().string()));
+                                e.onError(new Exception(new String(response.errorBody().bytes())));
                             } catch (IOException e1) {
                                 Timber.e(e1, "onResponse: ");
                             }

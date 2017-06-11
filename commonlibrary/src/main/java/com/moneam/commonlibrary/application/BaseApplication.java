@@ -7,11 +7,7 @@ import android.support.multidex.MultiDex;
 
 import com.moneam.commonlibrary.BuildConfig;
 import com.moneam.commonlibrary.di.Injector;
-import com.moneam.commonlibrary.utils.ReleaseTree;
-import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
-
-import timber.log.Timber;
 
 /**
  * Created by Ahmed Abdelmoneam on 4/17/2017.
@@ -21,17 +17,6 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree() {
-                @Override
-                public void log(int priority, String tag, String message, Throwable t) {
-                    Logger.log(priority, tag, message, t);
-                }
-            });
-        } else {
-            Timber.plant(new ReleaseTree());
-        }
         initializeApplicationComponent();
         if (BuildConfig.DEBUG) {
             if (LeakCanary.isInAnalyzerProcess(this)) {
@@ -44,7 +29,7 @@ public abstract class BaseApplication extends Application {
         }
     }
 
-    private void enabledStrictMode() {
+    public void enabledStrictMode() {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectAll()
                 .penaltyLog()

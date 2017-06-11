@@ -69,10 +69,18 @@ public class LocalDataSourceImpl implements LocalDataSource {
     @Override
     public void trimCache() {
         try {
-            File dir = mContext.getCacheDir();
+            File cacheDir = mContext.getCacheDir();
+
+            File[] files = cacheDir.listFiles();
+
+            if (files != null) {
+                for (File file : files)
+                    file.delete();
+            }
+            /*File dir = mContext.getCacheDir();
             if (dir != null && dir.isDirectory()) {
                 deleteDir(dir);
-            }
+            }*/
         } catch (Exception e) {
             Timber.e(e, "trimCache:");
         }

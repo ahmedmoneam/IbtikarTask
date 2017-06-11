@@ -30,6 +30,8 @@ public interface MainContract {
 
         Observable<List<User>> getFollowers();
 
+        Observable<List<User>> fetchFollowers();
+
         void clearCachedData();
 
         void resetCursor();

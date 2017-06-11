@@ -44,7 +44,7 @@ public class IFollowerInformationRepositoryImpl extends IbtikarCommonRepository 
                     public void onResponse(Call<List<Tweet>> call, Response<List<Tweet>> response) {
                         if (!response.isSuccessful()) {
                             try {
-                                e.onError(new Exception(response.errorBody().string()));
+                                e.onError(new Exception(new String(response.errorBody().bytes())));
                             } catch (Exception e1) {
                                 Timber.e(e1, "onResponse: ");
                             }

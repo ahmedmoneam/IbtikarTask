@@ -46,7 +46,9 @@ public class IMainRepositoryImpl extends IbtikarCommonRepository implements Main
     @Override
     public Observable<FollowersResponse> fetchNextPageFollowers(String nextCursor) {
         return followersStore
-                .fetch(new BarCode(FollowersResponse.class.getSimpleName(), nextCursor));
+                .fetch(new BarCode(FollowersResponse.class.getSimpleName(), nextCursor))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

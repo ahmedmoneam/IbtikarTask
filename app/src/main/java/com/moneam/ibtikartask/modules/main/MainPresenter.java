@@ -44,30 +44,7 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
                 .getFollowers()
                 .doOnSubscribe(disposable -> getRootView().showLoading())
                 .doAfterTerminate(() -> getRootView().hideLoading())
-                .subscribeWith(new DisposableObserver<List<User>>() {
-                    @Override
-                    public void onNext(@NonNull List<User> users) {
-                        if (onNext != null) {
-                            try {
-                                onNext.accept(users);
-                            } catch (Exception e) {
-                                Timber.e(e, "onNext:");
-                            }
-                        }
-                        getRootView().updateList(users);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        getRootView().showMessage(R.string.error_can_not_load_data, MessageType.Error);
-                        Timber.e(e, "onError: ");
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                }));
+                .subscribeWith(getObserver(onNext)));
     }
 
     @Override
@@ -79,6 +56,38 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
     public void refreshFollowersList() {
         getModel().clearCachedData();
         getModel().resetCursor();
-        getNextFollowerPage(aVoid -> getRootView().clearList());
+        addSubscription(getModel()
+                .fetchFollowers()
+                .doOnSubscribe(disposable -> getRootView().showLoading())
+                .doAfterTerminate(() -> getRootView().hideLoading())
+                .subscribeWith(getObserver(aVoid -> getRootView().clearList())));
+    }
+
+    @android.support.annotation.NonNull
+    private DisposableObserver<List<User>> getObserver(final Consumer<List<User>> onNext) {
+        return new DisposableObserver<List<User>>() {
+            @Override
+            public void onNext(@NonNull List<User> users) {
+                if (onNext != null) {
+                    try {
+                        onNext.accept(users);
+                    } catch (Exception e) {
+                        Timber.e(e, "onNext:");
+                    }
+                }
+                getRootView().updateList(users);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                getRootView().showMessage(R.string.error_can_not_load_data, MessageType.Error);
+                Timber.e(e, "onError: ");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
     }
 }
