@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ibtikar Task</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY" translatable="false">8cw5qoj6jbBlSglYWLr16ZgOf</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET" translatable="false">HCoLHSZCcmAhmnGi66HsCqvA5Yw8khHvnXdhLqDEhESwDLjSc3</string>
+    <string name="title_activity_main">Followers List</string>
+    <string name="title_activity_follower_information">Follower Information</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="error_can_not_load_data">Can not Load Data</string>
+</resources>

@@ -1,0 +1,103 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi 25
+        renderscriptSupportModeEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+    dexOptions {
+        javaMaxHeapSize "2560M"
+    }
+    lintOptions {
+        quiet true
+        warningsAsErrors true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //android support libraries
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+    //ui library
+    compile 'com.jakewharton:butterknife:8.5.1'
+    apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    // AVLoadingIndicatorView
+    compile 'com.wang.avi:library:2.1.3'
+    // twitter
+    compile('com.twitter.sdk.android:twitter:3.0.0@aar') {
+        transitive = true
+    }
+    // http library
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    // rx 2
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile 'com.patloew.rxlocation:rxlocation:1.0.3'
+    compile 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0-RC2'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
+    //json library
+    compile 'com.google.code.gson:gson:2.8.0'
+    //di dagger 2 libraries
+    apt 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.google.dagger:dagger:2.4'
+    apt 'org.glassfish:javax.annotation:10.0-b28'
+    //logging libraries
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    // leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //event bus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    // alerter
+    compile 'com.tapadoo.android:alerter:1.0.4'
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+}

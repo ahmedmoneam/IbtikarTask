@@ -1,0 +1,24 @@
+<resources>
+    <declare-styleable name="AutoCompleteSearchEditText">
+        <!--
+                <attr name="exampleString" format="string" />
+                <attr name="exampleDimension" format="dimension" />
+                <attr name="exampleColor" format="color" />
+                <attr name="exampleDrawable" format="color|reference" />
+        -->
+        <attr name="searchLayoutHeight" format="dimension" />
+        <attr name="searchBackground" format="color|reference" />
+        <attr name="searchDrawableLeft" format="reference" />
+        <attr name="searchTextColor" format="color" />
+        <attr name="searchTextColorHint" format="color" />
+        <attr name="searchTextSize" format="dimension" />
+        <!--fixme-->
+        <attr name="searchTextGravity" format="integer" />
+        <attr name="searchTextHint" format="string" />
+        <attr name="searchPaddingLeft" format="dimension" />
+        <attr name="listBackground" format="color|reference" />
+        <attr name="listMarginTop" format="dimension" />
+        <attr name="listLayoutHeight" format="dimension" />
+
+    </declare-styleable>
+</resources>

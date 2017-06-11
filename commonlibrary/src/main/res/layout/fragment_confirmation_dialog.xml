@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dim_gray">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imv_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="18dp"
+        android:padding="6dp"
+        app:srcCompat="@drawable/ic_close" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="191dp"
+        android:text="@string/placeholder_not_available"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_negativeAction"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="36dp"
+        android:background="@drawable/bg_flat_button_holo_accent_stroke"
+        android:text="@string/action_no"
+        android:textColor="@color/colorAccent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_positiveAction"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="36dp"
+        android:background="@drawable/bg_flat_button_holo_accent_stroke"
+        android:text="@string/action_yes"
+        android:textColor="@color/colorAccent"
+        tools:ignore="RelativeOverlap" />
+</RelativeLayout>

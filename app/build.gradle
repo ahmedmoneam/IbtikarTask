@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.moneam.ibtikartask"
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
+    }
+}
+
+def StoreVersion = '0.0.1-SNAPSHOT'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(path: ':commonlibrary')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //ui library
+    compile 'com.jakewharton:butterknife:8.5.1'
+    apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    //di dagger 2 libraries
+    apt 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.google.dagger:dagger:2.4'
+    apt 'org.glassfish:javax.annotation:10.0-b28'
+    // rx 2
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
+    // picasso image loader
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //logging libraries
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    // twitter
+    compile('com.twitter.sdk.android:twitter:3.0.0@aar') {
+        transitive = true
+    }
+    // store
+    compile "com.nytimes.android:store2:$StoreVersion"
+    compile "com.nytimes.android:cache:$StoreVersion"
+    compile "com.nytimes.android:middleware2:$StoreVersion"
+    compile "com.nytimes.android:filesystem2:$StoreVersion"
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+}
